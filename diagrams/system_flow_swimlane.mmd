@@ -1,0 +1,28 @@
+%% System flow (3-lane swimlane) for MedRoute
+flowchart TB
+  subgraph PHC_Staff[PHC Staff]
+    A1[Login]
+    A2[Log Inventory]
+    A3[View Dashboard & Alerts]
+    A4[Request Redistribution]
+  end
+
+  subgraph District_Officer[District Officer]
+    B1[View Pending Requests]
+    B2[Approve / Reject]
+    B3[Trigger Transfer Log]
+  end
+
+  subgraph State_Admin[State Admin]
+    C1[View Analytics]
+    C2[Manage Config]
+  end
+
+  A1 --> A2
+  A2 --> A3
+  A3 --> A4
+  A4 -->|Creates request| B1
+  B1 --> B2
+  B2 -->|On Approve| B3
+  B3 -->|Updates inventory & logs| A3
+  B3 -->|Feeds data| C1

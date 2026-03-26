@@ -1,0 +1,18 @@
+%% ER diagram for MedRoute
+erDiagram
+  PHC_CENTERS ||--o{ INVENTORY : "stores"
+  MEDICINES ||--o{ INVENTORY : "item"
+  PHC_CENTERS ||--o{ SHORTAGE_FLAGS : "flags"
+  MEDICINES ||--o{ SHORTAGE_FLAGS : "flagged_for"
+  PHC_CENTERS ||--o{ REDISTRIBUTION_REQUESTS : "requesting_center"
+  PHC_CENTERS ||--o{ REDISTRIBUTION_REQUESTS : "supplying_center"
+  MEDICINES ||--o{ REDISTRIBUTION_REQUESTS : "medicine"
+  REDISTRIBUTION_REQUESTS ||--|| TRANSFER_LOGS : "approved_to"
+
+%% Field hints
+%% PHC_CENTERS: id (UUID), name, district, state, latitude, longitude, contact, in_charge_name
+%% MEDICINES: id (UUID), name, category, unit, min_stock_threshold, standard_dosage, unit_price
+%% INVENTORY: id (UUID), center_id (FK), medicine_id (FK), quantity_available, expiry_date, batch_number
+%% SHORTAGE_FLAGS: id, center_id, medicine_id, inventory_id, flag_type, flagged_at, resolved
+%% REDISTRIBUTION_REQUESTS: id, requesting_center_id, supplying_center_id, medicine_id, quantity, status
+%% TRANSFER_LOGS: id, request_id, medicine_id, quantity, date_transferred, transferred_by, received_by

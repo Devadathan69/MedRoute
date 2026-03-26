@@ -1,0 +1,12 @@
+%% Wireframe: District Officer Approval
+graph TB
+  A[Sidebar]
+  B[Header: District Officer Approval]
+  C[List: Pending requests with pagination]
+  D[Row details: requester, supplying, medicine, qty, approve/reject buttons]
+  E[On approve -> creates transfer_log + notifies PHCs]
+
+  A --> B
+  B --> C
+  C --> D
+  D --> E
