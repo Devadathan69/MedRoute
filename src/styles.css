@@ -228,3 +228,92 @@ nav {
 .items-center { align-items: center; } .justify-between { justify-content: space-between; }
 .mt-2 { margin-top: 0.5rem; } .mt-4 { margin-top: 1rem; } .mb-4 { margin-bottom: 1rem; } .mb-6 { margin-bottom: 1.5rem; }
 .grid { display: grid; } .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* Responsive Dashboard Overrides */
+@media (max-width: 768px) {
+  /* Layout Flow */
+  .app-body {
+    flex-direction: column;
+  }
+  
+  /* Horizontal Mobile Sidebar */
+  .app-sidebar {
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 1rem 0.5rem !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-color);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+  }
+  .app-sidebar::-webkit-scrollbar {
+    display: none;
+  }
+  .sidebar-heading {
+    display: none !important;
+  }
+  .app-sidebar ul {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .app-sidebar li {
+    margin-bottom: 0 !important;
+  }
+  .app-sidebar a {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem !important;
+  }
+  
+  /* Header Restack */
+  .app-header {
+    flex-direction: column;
+    padding: 1rem !important;
+    gap: 1rem;
+    text-align: center;
+  }
+  .app-header .flex.items-center {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .header-user-info {
+    text-align: center !important;
+  }
+  
+  /* Main Content Spacing */
+  .main-content {
+    padding: 1rem !important;
+  }
+  
+  /* Grids and Cards */
+  .grid-cols-2, .grid-cols-4 {
+    grid-template-columns: 1fr !important;
+  }
+  .card {
+    padding: 1.25rem !important;
+  }
+  
+  /* Typography Scaling */
+  h1 { font-size: 1.75rem; }
+  h2, .auth-title { font-size: 1.5rem; }
+  
+  /* Tables */
+  .table-container {
+    padding-bottom: 0.5rem;
+  }
+  .table th, .table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .toast-container {
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+  }
+  .toast {
+    min-width: 100%;
+  }
+}

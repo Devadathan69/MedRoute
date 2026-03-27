@@ -28,7 +28,7 @@ export default function Header() {
   }
 
   return (
-    <header style={{
+    <header className="app-header" style={{
       display: 'flex', 
       justifyContent: 'space-between', 
       alignItems: 'center', 
@@ -45,7 +45,7 @@ export default function Header() {
       <div>
         {user ? (
           <div className="flex items-center gap-4">
-            <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div className="header-user-info" style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-main)' }}>
                 {profile?.role ? profile.role.replace('_', ' ').toUpperCase() : 'USER'}
               </span>
@@ -55,8 +55,7 @@ export default function Header() {
           </div>
         ) : (
           <div className="flex gap-2">
-            <a href="/login" className="btn btn-secondary">Login</a>
-            <a href="/signup" className="btn btn-primary">Sign up</a>
+            <a href="/login" className="btn btn-secondary">Staff Login</a>
           </div>
         )}
       </div>

@@ -41,39 +41,39 @@ export default function Sidebar({ session }) {
   }
 
   return (
-    <nav style={{ 
+    <nav className="app-sidebar" style={{ 
       width: '260px', 
       borderRight: '1px solid var(--border-color)', 
       padding: '1.5rem 1rem', 
       background: 'var(--surface-color)',
       minHeight: 'calc(100vh - 70px)'
     }}>
-      <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem', paddingLeft: '1rem' }}>
+      <div className="sidebar-heading" style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem', paddingLeft: '1rem' }}>
         Menu
       </div>
       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-        <NavLink to="/" label="PHC Dashboard" icon="🏥" />
+        <NavLink to="/" label="Dashboard" icon="🏥" />
         
         {role === 'phc_staff' && (
           <>
-            <NavLink to="/log-inventory" label="Log Inventory" icon="📦" />
-            <NavLink to="/redistribution" label="Request Transfer" icon="🔄" />
+            <NavLink to="/log-inventory" label="Inventory" icon="📦" />
+            <NavLink to="/redistribution" label="Transfer" icon="🔄" />
           </>
         )}
         
         {/* Approvals now accessible to supplying PHCs and Admins */}
-        <NavLink to="/approval" label="Transfer Approvals" icon="✓" />
+        <NavLink to="/approval" label="Approvals" icon="✓" />
         
-        <NavLink to="/analytics" label="Analytics & Reports" icon="📊" />
+        <NavLink to="/analytics" label="Analytics" icon="📊" />
 
         {role === 'state_admin' && (
           <>
-            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '2rem', marginBottom: '1rem', paddingLeft: '1rem' }}>
-              Administration
+            <div className="sidebar-heading" style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: '2rem', marginBottom: '1rem', paddingLeft: '1rem' }}>
+              Admin
             </div>
-            <NavLink to="/admin" label="State Admin DB" icon="🌍" />
-            <NavLink to="/manage-medicines" label="Manage Medicines" icon="💊" />
-            <NavLink to="/manage-phcs" label="Manage PHCs" icon="🏢" />
+            <NavLink to="/admin" label="State DB" icon="🌍" />
+            <NavLink to="/manage-medicines" label="Medicines" icon="💊" />
+            <NavLink to="/manage-phcs" label="Centers" icon="🏢" />
           </>
         )}
       </ul>

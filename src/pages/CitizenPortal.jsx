@@ -77,7 +77,7 @@ export default function CitizenPortal() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-primary)' }}>
-      <header style={{ padding: '1.5rem 2rem', background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', borderBottom: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 100 }}>
+      <header className="citizen-header" style={{ padding: '1.5rem 2rem', background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', borderBottom: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 100 }}>
         <div style={{ fontWeight: 800, fontSize: '1.5rem', color: 'var(--primary)', letterSpacing: '-0.02em' }}>
           Med<span style={{color: 'var(--text-main)'}}>Route</span> <span style={{fontSize:'1rem', color:'#64748b', fontWeight:400, marginLeft:'8px'}}>| Citizen Portal</span>
         </div>
@@ -89,7 +89,7 @@ export default function CitizenPortal() {
           <h1 style={{ marginBottom: '0.5rem', fontSize:'2rem' }}>Find Essential Medicines Near You</h1>
           <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', fontSize:'1.1rem' }}>Instantly locate primary health centers carrying the life-saving supplies you need.</p>
           
-          <form onSubmit={handleSearch} style={{ display: 'flex', gap: '1rem', maxWidth: '700px' }}>
+          <form onSubmit={handleSearch} className="citizen-search-box" style={{ display: 'flex', gap: '1rem', maxWidth: '700px' }}>
             <input 
               type="text" 
               className="form-control" 
@@ -106,9 +106,9 @@ export default function CitizenPortal() {
           {errorMsg && <div style={{ color: 'var(--danger)', marginTop: '1rem', fontSize: '0.9rem', fontWeight: 500 }}>{errorMsg}</div>}
         </div>
 
-        <div style={{ flex: 1, display: 'flex', position: 'relative' }}>
+        <div className="portal-layout">
           {/* Sidebar Navigation Results */}
-          <div style={{ width: '400px', background: '#f8fafc', overflowY: 'auto', borderRight: '1px solid #e2e8f0', display: results.length > 0 ? 'block' : 'none', zIndex: 20 }}>
+          <div className="portal-sidebar" style={{ display: results.length > 0 ? 'block' : 'none' }}>
             <div style={{ padding: '1.5rem' }}>
               <h3 style={{ marginBottom: '1.5rem', fontSize: '1.2rem', color: 'var(--text-main)' }}>Nearest Matches</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -140,7 +140,7 @@ export default function CitizenPortal() {
           </div>
 
           {/* Map Layer Rendering */}
-          <div style={{ flex: 1, background: '#e2e8f0', position: 'relative', zIndex: 10 }}>
+          <div className="portal-map">
             {location ? (
               <MapContainer center={location} zoom={11} style={{ height: '100%', width: '100%' }}>
                 {/* Esri World Imagery (Stunning Satellite Map Output) */}
