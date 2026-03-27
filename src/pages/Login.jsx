@@ -50,9 +50,14 @@ export default function Login() {
             Send Magic Link
           </button>
         </form>
-        <div style={{ textAlign: 'center', marginTop: '2rem', fontSize: '0.875rem' }}>
-          <span style={{ color: 'var(--text-muted)' }}>Don't have an account? </span>
-          <a href="/signup" style={{ fontWeight: 600 }}>Sign up</a>
+        
+        <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid var(--border-color)', textAlign: 'center' }}>
+          <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1rem', fontWeight: 500 }}>
+            Are you a patient looking for nearby medicine?
+          </div>
+          <a href="/public" className="btn btn-secondary" style={{ width: '100%', display: 'flex', justifyContent: 'center', background: '#f1f5f9', color: '#0f172a', fontWeight: 'bold' }}>
+            📍 Enter Public Citizen Portal
+          </a>
         </div>
       </div>
     </div>

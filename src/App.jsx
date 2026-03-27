@@ -8,6 +8,7 @@ import ToastContainer from './components/ToastContainer'
 
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import CitizenPortal from './pages/CitizenPortal'
 import PHCDashboard from './pages/PHCDashboard'
 import LogInventory from './pages/LogInventory'
 import RedistributionFinder from './pages/RedistributionFinder'
@@ -45,7 +46,7 @@ export default function App() {
     setLoading(false)
   }
 
-  const isAuthPage = location.pathname === '/login' || location.pathname === '/signup'
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/public'
 
   if (loading) {
     return <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-color)', color: 'var(--text-muted)' }}>Loading...</div>
@@ -66,7 +67,7 @@ export default function App() {
         <ToastContainer />
         <Routes>
           <Route path="/login" element={session ? <Navigate to="/" replace /> : <Login />} />
-          <Route path="/signup" element={session ? <Navigate to="/" replace /> : <Signup />} />
+          <Route path="/public" element={<CitizenPortal />} />
         </Routes>
       </>
     )

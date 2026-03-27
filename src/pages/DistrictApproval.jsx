@@ -5,6 +5,7 @@ import { format } from 'date-fns'
 
 export default function DistrictApproval({ session }) {
   const [pending, setPending] = useState([])
+  const [userCenterId, setUserCenterId] = useState(null)
 
   useEffect(() => {
     async function load() {
@@ -24,12 +25,12 @@ export default function DistrictApproval({ session }) {
          center_id = p?.center_id
          district = p?.district
       }
+      
+      setUserCenterId(center_id || null)
 
-      // If PHC Staff, only show requests sent TO their center
-      if (role === 'phc_staff' && center_id) {
-        query = query.eq('supplying_center_id', center_id)
-      } 
-      // If District Officer, only show requests within their district (For MVP we do client filter or just let them see all, but ideally we'd filter here if we had requesting district stored directly)
+      // If PHC Staff, only show requests sent TO their center (for filtering locally mapped UI)
+      // We don't strictly filter if we want them to see their outward ones here too, but realistically 
+      // the PHCDashboard handles outward ones now, so this handles inward approvals.
       
       const { data, error } = await query
       if (error) console.error(error)
@@ -97,8 +98,14 @@ export default function DistrictApproval({ session }) {
                     </td>
                     <td style={{ textAlign: 'right' }}>
                       <div className="flex gap-2" style={{ justifyContent: 'flex-end' }}>
-                        <button className="btn btn-primary" style={{ padding: '0.4rem 1rem' }} onClick={() => updateStatus(r.id, 'approved')}>Approve</button>
-                        <button className="btn btn-secondary" style={{ padding: '0.4rem 1rem', color: 'var(--danger-text)' }} onClick={() => updateStatus(r.id, 'rejected')}>Reject</button>
+                        {r.requesting_center_id === userCenterId ? (
+                           <span style={{ fontStyle: 'italic', color: 'var(--text-muted)', fontSize: '0.85rem' }}>Awaiting supplier...</span>
+                        ) : (
+                          <>
+                            <button className="btn btn-primary" style={{ padding: '0.4rem 1rem' }} onClick={() => updateStatus(r.id, 'approved')}>Approve</button>
+                            <button className="btn btn-secondary" style={{ padding: '0.4rem 1rem', color: 'var(--danger-text)' }} onClick={() => updateStatus(r.id, 'rejected')}>Reject</button>
+                          </>
+                        )}
                       </div>
                     </td>
                   </tr>
